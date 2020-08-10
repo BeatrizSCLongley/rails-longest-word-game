@@ -1,0 +1,17 @@
+<!-- Display a new random grid of letters / a form for the user to type a word / a button to submit the form POST to score -->
+<h1>New game</h1>
+
+<ul>
+  <% @letters.each do |letter| %>
+  <li><%= letter %></li>
+  <% end %>
+</ul>
+
+<form action="/score" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <!-- The line bellow will store the @letters to be used in controller - score -->
+  <%= hidden_field_tag :letters, @letters %>
+  <label for="word">What is the longest word you can find?</label>
+  <input type="text" name="word" id="word">
+  <input type="submit" value="Play">
+</form>
